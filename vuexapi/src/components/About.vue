@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-       <div
+       <!-- <div
       v-for="(value,index) in selectedArticle"
       :key="index"
       class="row"
@@ -10,8 +10,12 @@
  
 
   {{value.name}}
-       </div>
+       </div> -->
        <!-- <router-view></router-view> -->
+
+    <p>{{selectedArticle[0].tagline}}</p>
+    <p>{{selectedArticle[0].name}}</p>
+    <img :src="selectedArticle[0].image_url" alt="image">
   </div>
 </template>
 
@@ -24,36 +28,32 @@ import { mapState } from "vuex";
 
 export default {
   name: "about",
-    props:{
-      //  proId: this.$route.params.Pid,
-
+  props: {
+    //  proId: this.$route.params.Pid,
   },
   components: {
     // HelloWorld
   },
   data() {
     return {
-        article:"",
+      article: ""
       //  proId: this.$route.params.Pid,
-
-
     };
   },
   computed: {
     // return the beers obj filter it by id and match it with route_id
-    selectedArticle(){
-      return this.$store.state.beers.filter(beer => beer.id == this.$route.params.id);
+    selectedArticle() {
+      return this.$store.state.beers.filter(
+        beer => beer.id == this.$route.params.id
+      );
     }
   },
-  mounted(){
-    this.article = this.$store.getters.getBeersById(this.beersId)
-      //My obj beers
-      console.log(this.$store.state.beers);
-      //The id for each beer...
-      console.log(this.$route.params.id);
-
+  mounted() {
+    this.article = this.$store.getters.getBeersById(this.beersId);
+    //My obj beers
+    console.log(this.$store.state.beers);
+    //The id for each beer...
+    console.log(this.$route.params.id);
   }
-
-  
 };
 </script>
